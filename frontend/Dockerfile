@@ -12,4 +12,5 @@ EXPOSE 7860
 
 ENV FASTAPI_BASE_URL="http://127.0.0.1:8000"
 
-CMD ["python", "app.py", "--server_name", "0.0.0.0"]
+
+CMD ["python", "app.py"]

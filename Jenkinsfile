@@ -4,9 +4,23 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = "kahoot-gradio-frontend"
-        DOCKER_TAG = "latest"
-        DOCKER_REGISTRY = "your-docker-registry" // 替換為你的 Docker Registry，例如 "docker.io/username"
+        DOCKER_TAG = "${BUILD_NUMBER}"
+        DOCKER_REGISTRY = "okii225" 
         FULL_IMAGE_NAME = "${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}"
+        DOCKER_CREDENTIALS = credentials('docker-hub-credentials')
+    }
+
+    stage('Debug Env') {
+        steps {
+            sh '''
+            echo "Running on OS:"
+            uname -a
+            echo "Docker version:"
+            docker --version
+            echo "kubectl version:"
+            kubectl version --client
+            '''
+        }
     }
 
     stages {
