@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kahoot-gradio-frontend
+  labels:
+    app: kahoot-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kahoot-frontend
+  template:
+    metadata:
+      labels:
+        app: kahoot-frontend
+    spec:
+      containers:
+      - name: gradio-frontend
+        image: your-docker-registry/kahoot-gradio-frontend:latest
+        ports:
+        - containerPort: 7860
+        env:
+        - name: FASTAPI_BASE_URL
+          value: "http://backend-service:8000"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kahoot-gradio-frontend
+  labels:
+    app: kahoot-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: kahoot-frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 7860
