@@ -24,7 +24,6 @@ jobs:
 
     - name: Run unit tests
       run: |
-        cd frontend
         pytest tests/
 
     - name: Set up Docker Buildx
