@@ -1,0 +1,8 @@
+python-dotenv
+sqlalchemy[asyncio] 
+asyncmy 
+databases 
+pymysql
+pydantic
+fastapi
+gradio
