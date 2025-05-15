@@ -94,6 +94,5 @@ with gr.Blocks() as demo:
         submit_output = gr.Textbox(label="提交結果")
         submit_btn.click(submit_answer, inputs=[player_id, selected_option], outputs=submit_output)
 
-# 啟動 Gradio 介面
-
-demo.launch(server_name="0.0.0.0", server_port=7860)
+if __name__ == '__main__':
+    demo.launch(server_name="0.0.0.0", server_port=7860)
