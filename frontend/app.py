@@ -9,7 +9,6 @@ user_token = None
 game_id = None
 question_id = None
 
-# 註冊用戶
 def register_user(username, password):
     global user_token
     try:
@@ -23,7 +22,6 @@ def register_user(username, password):
     except Exception as e:
         return f"註冊失敗: {str(e)}"
 
-# 加入遊戲
 def join_game(user_id, game_id_input):
     global game_id
     try:
@@ -36,7 +34,6 @@ def join_game(user_id, game_id_input):
     except Exception as e:
         return f"加入遊戲失敗: {str(e)}"
 
-# 獲取問題
 def get_question():
     global question_id
     try:
@@ -50,7 +47,6 @@ def get_question():
     except Exception as e:
         return f"獲取題目失敗: {str(e)}"
 
-# 提交答案
 def submit_answer(player_id, selected_option):
     try:
         response = requests.post(
@@ -65,7 +61,6 @@ def submit_answer(player_id, selected_option):
     except Exception as e:
         return f"提交答案失敗: {str(e)}"
 
-# Gradio 介面
 with gr.Blocks() as demo:
     gr.Markdown("# 遊戲前端介面")
     
